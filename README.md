@@ -5,7 +5,8 @@ with no DLL, no EEex and no engine patch: only BAM files and five GLSL shaders i
 
 Status on 27 October 2026: every creature animation of BG2:EE 2.7.3 is converted and verified by calculation (17
 classes, the 10,284 BAM files the engine loads for them), and one in-game test with a creature of every class on the
-same screen passed (M1 Max, BG2:EE 2.7.3 from Steam, a separate copy of the game). The HD images used so far are a
+same screen passed (M1 Max, BG2:EE 2.7.3 from Steam, a separate copy of the game). At k = 4 the game keeps its 30
+frames per second in that scene (see "Frame times"). The HD images used so far are a
 Scale4x demo; the format is meant to carry real HD art (AI upscales such as bg2hd's ×2 with its sub-shades, or 3D
 re-renders).
 
@@ -82,6 +83,24 @@ Test save with 22 creatures of every class around the party (Abdel equipped), in
 
 Screenshots: `docs/ingame-*.jpg`.
 
+### Frame times (27 October 2026)
+
+The same test save, full screen at 2056 × 1290 points (Retina) on a 16-inch MacBook Pro with an M1 Max, OpenGL 2.1
+over Metal; 60 seconds of unpaused play per configuration, measured with `tools/perf`:
+
+| | Original sprites | SC-HD k = 2 | SC-HD k = 4 (2 runs) |
+|---|---|---|---|
+| Frames per second (median) | 30 | 29 | 30, 30 |
+| Slowest frame (ms) | 105 (one isolated hitch) | 47 | 50, 46 |
+| Main-thread work per frame (ms, median) | 6.5 | 9.3 | 9.3, 9.3 |
+| CPU (% of one core, median) | 21 | 28 | 29, 29 |
+| Memory at the end (MB) | 408 | 523 | 677, 648 |
+| Texture uploads (MB/s, median) | 42 | 207 | 511, 513 |
+
+The engine caps the game at 30 frames per second: at k = 4 about 24 ms of each 33 ms frame are left on this
+machine. k = 2 saves memory and upload bandwidth, not main-thread time. Slower Macs (Intel, 8 GB) have not been
+measured; `tools/perf` builds for both architectures.
+
 ## Contents
 
 ```
@@ -97,6 +116,7 @@ tables/                   groups.json and canon_all.json for BG2:EE 2.7.3
 re/                       constructor emulation (needs the game binary and Unicorn)
 tests/                    offline engine simulator and test suites (WebGL via Playwright)
 scene/                    the in-game test: converter run, installer, test-save builder
+tools/perf/               frame-time logger for the Mac game (loaded at launch, changes no file)
 docs/                     screenshots and test sheets
 ```
 
@@ -122,8 +142,9 @@ must be converted together: an HD body with an original weapon, or the reverse, 
 - **Keep "Always Dither" on** (Game Options; it is the engine default). With it off, walls erase texels instead of
   halving them: HD areas covered by a wall leave holes, and a creature framed by two wall pieces can show its raw
   frame.
-- **CPU and memory grow with k².** The engine copies every layer into the FX surface on the CPU each frame, and the
-  temporary 1024² atlas is flushed more often. Frame times have not been measured yet.
+- **Cost.** The engine copies every layer into the FX surface on the CPU each frame, and the temporary 1024² atlas
+  is flushed more often. Measured at k = 4 on an M1 Max: 30 frames per second kept, 2.8 ms more main-thread work
+  per frame, about 250 MB more memory, 12× the texture uploads (see "Frame times" above).
 - **Disk:** about 6× the original BAMs at k = 4.
 - **"HP over head"** bars appear higher (the engine uses the frame height).
 - **Effect animations** (22 IDs: fire rings, chunks, blood, glyphs…) are not converted.

@@ -11,6 +11,8 @@ EEex : uniquement des BAM et cinq shaders dans `override`.**
   image par image. La liste vient de l'émulation des constructeurs d'animation, fichiers INI compris.
 - **Un seul test en jeu** a suffi : une sauvegarde de test réunit une créature de chaque famille sur un même écran.
   Tout s'affiche en HD, à sa place, sans aucun défaut visible.
+- **Performances mesurées en jeu :** en ×4, le jeu garde ses 30 images par seconde sur un MacBook Pro M1 Max
+  (détail plus bas).
 - Les images HD actuelles viennent de Scale4x (démonstration). Le format est prêt pour de vraies images HD : upscale
   IA (bg2hd et ses sous-teintes), ou rendus 3D.
 
@@ -46,6 +48,24 @@ pas un problème des sprites.
 
 - **Test 1 :** Abdel seul, converti en ×4 (créature seule, barreaux de cage, pause, miroir, zoom). ✅
 - **Test 2 :** Abdel équipé (corps + hache + bouclier + casque). ✅
+
+## Mesure des performances (27/10/2026)
+
+Même sauvegarde de test, en plein écran (2056 × 1290 points, Retina) sur un MacBook Pro 16 pouces M1 Max, OpenGL 2.1
+sur Metal ; 60 secondes de jeu sans pause par version, mesurées avec `tools/perf` :
+
+| | Sprites d'origine | SC-HD ×2 | SC-HD ×4 (2 essais) |
+|---|---|---|---|
+| Images par seconde (médiane) | 30 | 29 | 30 et 30 |
+| Image la plus lente (ms) | 105 (un à-coup isolé) | 47 | 50 et 46 |
+| Calcul du fil principal par image (ms, médiane) | 6,5 | 9,3 | 9,3 et 9,3 |
+| Processeur (% d'un cœur, médiane) | 21 | 28 | 29 et 29 |
+| Mémoire à la fin (Mo) | 408 | 523 | 677 et 648 |
+| Textures envoyées à la carte graphique (Mo/s, médiane) | 42 | 207 | 511 et 513 |
+
+Le moteur plafonne le jeu à 30 images par seconde : en ×4, il reste environ 24 ms sur les 33 de chaque image sur
+cette machine. ×2 économise de la mémoire et des envois de textures, pas du calcul. Les Mac plus lents (Intel, 8 Go)
+n'ont pas été mesurés ; `tools/perf` se compile pour les deux architectures.
 
 ---
 
@@ -154,8 +174,9 @@ murs, quad, `aRef`, découpe à la vue), puis rend les scènes dans WebGL avec l
 - **Garder « Always Dither » activé** (options de jeu ; c'est le réglage par défaut, et ton jeu l'a). Sinon les murs
   effacent au lieu d'atténuer : trous dans le sprite HD, et cadre brut possible pour une créature encadrée par deux
   pans de mur.
-- **Coût :** processeur et mémoire croissent avec k². Disque : environ 6 fois les BAM d'origine en ×4. Le temps par
-  image n'a pas encore été mesuré en jeu.
+- **Coût :** en ×4 sur un M1 Max, 30 images par seconde tenues, 2,8 ms de calcul en plus par image, environ 250 Mo
+  de mémoire en plus et 12 fois plus de textures envoyées (voir « Mesure des performances »). Disque : environ 6 fois
+  les BAM d'origine en ×4.
 - **Barre de vie au-dessus de la tête :** elle apparaît plus haut (le moteur prend la hauteur de l'image).
 - **Animations d'effets** (22 identifiants : cercles de feu, morceaux, sang, glyphes…) : non converties.
 - **Les cinq shaders vont ensemble.** Ils remplacent les mêmes fichiers que les packs de shaders existants.
