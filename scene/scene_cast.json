@@ -1,0 +1,219 @@
+{
+ "party": [
+  [
+   4090,
+   1960,
+   12
+  ],
+  [
+   4140,
+   1990,
+   12
+  ]
+ ],
+ "viewport": [
+  3450,
+  1380
+ ],
+ "remove_near": [
+  3900,
+  1750,
+  900
+ ],
+ "cast": [
+  {
+   "name": "SC Dragon (MonsterMulti)",
+   "anim": "1200",
+   "x": 4450,
+   "y": 1520,
+   "orient": 2
+  },
+  {
+   "name": "SC Demogorgon (MultiNew)",
+   "anim": "1300",
+   "x": 3720,
+   "y": 1700,
+   "orient": 14
+  },
+  {
+   "name": "SC Wyverne 4 quarts",
+   "anim": "1000",
+   "x": 3900,
+   "y": 1680,
+   "orient": 10
+  },
+  {
+   "name": "SC Wyverne Large16",
+   "anim": "A000",
+   "x": 4080,
+   "y": 1690,
+   "orient": 4
+  },
+  {
+   "name": "SC Sahuagin + lance",
+   "anim": "7F09",
+   "x": 3680,
+   "y": 1830,
+   "orient": 12,
+   "items": {
+    "weapon": "SPER01"
+   }
+  },
+  {
+   "name": "SC Hobgobelin + epee",
+   "anim": "8100",
+   "x": 3760,
+   "y": 1830,
+   "orient": 2,
+   "items": {
+    "weapon": "SW1H04"
+   }
+  },
+  {
+   "name": "SC Sirene + arc",
+   "anim": "2000",
+   "x": 3840,
+   "y": 1830,
+   "orient": 14,
+   "items": {
+    "weapon": "BOW01"
+   }
+  },
+  {
+   "name": "SC Squelette + hache",
+   "anim": "EB00",
+   "x": 3920,
+   "y": 1830,
+   "orient": 6,
+   "items": {
+    "weapon": "AX1H01"
+   }
+  },
+  {
+   "name": "SC Ombre (translucide)",
+   "anim": "7703",
+   "x": 4000,
+   "y": 1830,
+   "orient": 10
+  },
+  {
+   "name": "SC Goule (MonsterOld)",
+   "anim": "7000",
+   "x": 4080,
+   "y": 1830,
+   "orient": 0
+  },
+  {
+   "name": "SC Humaine plates",
+   "anim": "6010",
+   "x": 3680,
+   "y": 1960,
+   "orient": 2,
+   "items": {
+    "armor": "PLAT01",
+    "helmet": "HELM04",
+    "shield": "SHLD05",
+    "weapon": "SW1H04"
+   }
+  },
+  {
+   "name": "SC Elfe cuir arc",
+   "anim": "6001",
+   "x": 3750,
+   "y": 1960,
+   "orient": 14,
+   "items": {
+    "armor": "LEAT01",
+    "weapon": "BOW01"
+   }
+  },
+  {
+   "name": "SC Nain mailles",
+   "anim": "6002",
+   "x": 3820,
+   "y": 1960,
+   "orient": 4,
+   "items": {
+    "armor": "CHAN01",
+    "helmet": "HELM01",
+    "shield": "SHLD03",
+    "weapon": "HAMM01"
+   }
+  },
+  {
+   "name": "SC Halfelin dague",
+   "anim": "6003",
+   "x": 3880,
+   "y": 1960,
+   "orient": 10,
+   "items": {
+    "armor": "LEAT01",
+    "weapon": "DAGG01"
+   }
+  },
+  {
+   "name": "SC Humain plates 2M",
+   "anim": "6000",
+   "x": 3950,
+   "y": 1960,
+   "orient": 12,
+   "items": {
+    "armor": "PLAT01",
+    "weapon": "SW2H01",
+    "helmet": "HELM04"
+   }
+  },
+  {
+   "name": "SC Moine (CharacterOld)",
+   "anim": "6402",
+   "x": 4020,
+   "y": 1960,
+   "orient": 6,
+   "items": {
+    "weapon": "DAGG01"
+   }
+  },
+  {
+   "name": "SC Ogre (Large) mur",
+   "anim": "9000",
+   "x": 4250,
+   "y": 1800,
+   "orient": 2
+  },
+  {
+   "name": "SC Ankheg mur",
+   "anim": "3000",
+   "x": 4380,
+   "y": 1930,
+   "orient": 12
+  },
+  {
+   "name": "SC Vache (AmbientStatic)",
+   "anim": "B000",
+   "x": 3700,
+   "y": 2005,
+   "orient": 4
+  },
+  {
+   "name": "SC Chauve-souris",
+   "anim": "C000",
+   "x": 3790,
+   "y": 2000,
+   "orient": 2
+  },
+  {
+   "name": "SC Aigle (Flying)",
+   "anim": "D000",
+   "x": 3870,
+   "y": 2005,
+   "orient": 12
+  },
+  {
+   "name": "SC TownStatic",
+   "anim": "4000",
+   "x": 3950,
+   "y": 2005,
+   "orient": 0
+  }
+ ]
+}
