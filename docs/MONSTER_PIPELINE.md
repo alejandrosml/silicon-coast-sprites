@@ -5,8 +5,10 @@ This document describes the automatic chain used to remake the creatures of Bald
 animation type 7000 ("monster", one BAM file per sequence). The chain was written after the first manual test (the
 ogre, October 2026) and the lessons learnt from it; its aim is that nothing has to be fixed by hand.
 
-The scripts of the chain are kept with the project's private working data for now (they read the game's own
-files); this document records the method and the checks.
+The scripts are in [`pipeline3d/`](../pipeline3d) (comments in French). They read the game's own files, which
+are not in this repository; `pipeline3d/session_cloud.sh` runs one creature in a cloud session, in slices of a few
+minutes, with its data taken from a private dataset. The SC-HD conversion of new art (stage 10) uses options of
+`sc_convert.py` and `sc_verify.py` that are not published yet, so that stage runs in the main session for now.
 
 ## Principle
 

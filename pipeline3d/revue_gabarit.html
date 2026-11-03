@@ -1,0 +1,102 @@
+<title>Bestiaire HD de BG2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@500;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Mise en page : un bestiaire — un tableau de synthèse, puis une entrée par monstre (aperçus animés, mesures, mouvements). */
+:root {
+  --bg: #eef1f4;          /* pierre froide */
+  --surface: #f9fafb;
+  --ink: #1b2130;
+  --ink-2: #4d5668;
+  --rule: #cfd5dd;
+  --gold: #946a1f;        /* or des menus du jeu */
+  --ok: #2f7a4f;
+  --warn: #a35a12;
+  --tile: #2b2a27;        /* fond sombre des aperçus (sol du jeu) */
+  --display: "Alegreya SC", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --body: "Alegreya Sans", "Gill Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161d; --surface: #1a1f28; --ink: #dfe4ea; --ink-2: #9aa4b2; --rule: #2c3442;
+    --gold: #d2a54c; --ok: #6cc08d; --warn: #e7a35a; --tile: #2b2a27; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12161d; --surface: #1a1f28; --ink: #dfe4ea; --ink-2: #9aa4b2; --rule: #2c3442;
+  --gold: #d2a54c; --ok: #6cc08d; --warn: #e7a35a; --tile: #2b2a27; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.5; }
+.page { max-width: 1180px; margin: 0 auto; padding-block: 40px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 48px; }
+h1, h2 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: 0.01em; }
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.05; }
+h1 .or { color: var(--gold); }
+.intro { display: grid; gap: 14px; max-width: 68ch; }
+.intro p { margin: 0; color: var(--ink-2); }
+.m { font-family: var(--mono); font-size: 0.86em; letter-spacing: 0.02em; }
+.n { font-family: var(--mono); font-size: 0.86em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+a { color: inherit; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.synthese { overflow-x: auto; border-top: 2px solid var(--ink); }
+table { border-collapse: collapse; width: 100%; }
+caption { text-align: left; color: var(--ink-2); font-size: 0.85rem; padding-block: 8px; }
+th, td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+thead th { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); font-weight: 500; }
+tbody th { font-weight: 500; }
+.att { color: var(--ink-2); font-style: italic; }
+.pill { display: inline-block; font-size: 0.78rem; padding: 1px 9px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.pill.ok { color: var(--ok); }
+.pill.warn { color: var(--warn); }
+.entree { display: grid; gap: 18px; padding-top: 28px; border-top: 1px solid var(--rule); }
+.tete { display: grid; gap: 4px; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
+.meta { margin: 0; color: var(--ink-2); }
+.vues { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; }
+figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+figure img { display: block; background: var(--tile); border-radius: 4px; max-width: 100%; height: auto; }
+.vues figure:not(.dessin) img { width: min(560px, 100%); }
+figure.dessin img { width: 180px; }
+figcaption { font-size: 0.82rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.07em; }
+.details { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 28px; }
+.mesures { margin: 0; display: grid; gap: 8px; align-content: start; }
+.mesures div { display: grid; grid-template-columns: 11rem 1fr; gap: 10px; }
+dt { color: var(--ink-2); font-size: 0.9rem; }
+dd { margin: 0; font-family: var(--mono); font-size: 0.84rem; font-variant-numeric: tabular-nums; }
+.seqs { min-width: 0; overflow-x: auto; }
+.seqs td, .seqs th { font-size: 0.9rem; padding-block: 6px; }
+.alertes { grid-column: 1 / -1; }
+.alertes h3 { font-family: var(--body); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); margin: 0 0 4px; font-weight: 500; }
+.alertes ul { margin: 0; padding-left: 1.1em; }
+@media (max-width: 760px) {
+  .details { grid-template-columns: minmax(0, 1fr); }
+  .mesures div { grid-template-columns: 9rem 1fr; }
+  body { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+<div class="page">
+  <header class="intro">
+    <h1>Bestiaire HD <span class="or">de Baldur's Gate II</span></h1>
+    <p>{{N}} monstres refaits en 3D par la chaîne automatique, sans retouche à la main. Pour chacun : en haut
+       l'original du jeu agrandi quatre fois, en bas le nouveau rendu HD, de face et de profil, au rythme du jeu
+       (15 images par seconde) ; puis les contrôles chiffrés des règles de fidélité et les mouvements choisis.</p>
+  </header>
+  <section class="synthese" aria-label="Synthèse">
+    <table>
+      <caption>Hauteur : écart à l'original, 1<sup>re</sup> image de l'attente de face (règle : 3 %). Luminance :
+        nouveau / original. Ombre : recouvrement avec l'ombre de l'original (0 à 1).</caption>
+      <thead><tr><th scope="col">Monstre</th><th scope="col">Fichiers</th><th scope="col">Hauteur</th>
+        <th scope="col">Luminance</th><th scope="col">Port du corps</th><th scope="col">Ombre</th>
+        <th scope="col">Erreurs SC-HD</th><th scope="col">État</th></tr></thead>
+      <tbody>
+{{LIGNES}}
+      </tbody>
+    </table>
+  </section>
+{{CARTES}}
+</div>
