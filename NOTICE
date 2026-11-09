@@ -1,0 +1,9 @@
+Clarifications on Output and External Assets
+============================================
+
+- Generated sprites (PNG/JSON outputs produced by running the generator) are
+  unrestricted and may be used in commercial or non-commercial projects without
+  attribution.
+- External fonts or third-party assets fetched at runtime (e.g., Press Start 2P
+  from Google Fonts during build_itch_assets.py) remain subject to their own
+  upstream licenses (SIL Open Font License 1.1).
