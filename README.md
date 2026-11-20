@@ -1,6 +1,6 @@
-# Silicon Coast — HD creature sprites for the Enhanced Edition, without a DLL
-
 [↖ ASML · All projects](https://alejandrosml.github.io/?lang=en#projects)
+
+# Silicon Coast — HD creature sprites for the Enhanced Edition, without a DLL
 
 **HD creatures in Baldur's Gate II: EE on macOS (Apple Silicon, native), drawn at their original size and place,
 with no DLL, no EEex and no engine patch: only BAM files and five GLSL shaders in `override`.**
