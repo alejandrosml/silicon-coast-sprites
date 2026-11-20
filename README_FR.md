@@ -1,5 +1,7 @@
 # Silicon Coast — sprites HD
 
+[↖ ASML · Tous les projets](https://alejandrosml.github.io/?lang=fr#projects)
+
 **Des créatures HD dans Baldur's Gate II : EE sur Mac, affichées à leur taille et à leur place d'origine, sans DLL ni
 EEex : uniquement des BAM et cinq shaders dans `override`.**
 
